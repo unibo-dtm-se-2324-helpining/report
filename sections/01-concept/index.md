@@ -18,25 +18,27 @@ nav_order: 2
 ## Use Case Collection
 ![Use cases](/pictures/useCase.png)
 
-### Use Case 1: User Seeking Expert Assistance
+### Use Case 1: User Upload help request
 - **Scenario**: A user encounters a complex problem in their field of study or work.
 - **Action**: The user logs into 'Helpining', navigates to the request submission page, and uploads a detailed description of their problem.
-- **Outcome**: The request appears on a public notice board visible to relevant experts, who can then choose to offer assistance.
 
-### Use Case 2: Expert Offering Assistance
+
+### Use Case 2: Expert accept user help request
 - **Scenario**: An expert in a particular field logs into 'Helpining' and browses the public notice board for user requests that match their expertise.
 - **Action**: The expert selects a request they can assist with and accepts it.
-- **Outcome**: The request is added to the user's personal notice board, and the user is notified of the expert's acceptance.
 
-### Use Case 3: Scheduling and Conducting a Video Call
-- **Scenario**: A user selects an expert from their personal notice board to address their problem.
+### Use Case 3: User select expert for resolving help request
+- **Scenario**: The expert selects a request they can assist with and accepts it.
 - **Action**: The application sends an email to the expert with a link to join a Microsoft Teams meeting, facilitating direct communication.
-- **Outcome**: The user and expert engage in a real-time video call through the third-party application, allowing the expert to provide immediate assistance.
 
-### Use Case 4: Profile Management
+### Use Case 4: User rate the assistance
+- **Scenario**: A user that has completed the meeting for the resolution of the problem.
+- **Action**: The user rate the expert about the resolving of the issue.
+
+### Use Case 5: User and Expert update ther personal profile Management
 - **Scenario**: Users and experts need to update their personal information or expertise areas.
 - **Action**: They access their profile management page, make the necessary updates, and save the changes.
-- **Outcome**: The updated information ensures that the platform remains relevant and accurate, improving the matching process between users and experts.
+
 
 ## User Stories
 
@@ -60,5 +62,3 @@ As a user, I want to join a video call with an expert through Microsoft Teams so
 
 ### User Story 7: Rating the Assistance
 As a user, I want to rate the expert's assistance after the video call so that I can provide feedback on my experience.
-
-'Helpining' is designed to provide an efficient, reliable, and user-friendly platform for real-time expert assistance, leveraging modern web technologies to connect users and experts seamlessly.
