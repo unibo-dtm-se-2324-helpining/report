@@ -6,30 +6,77 @@ nav_order: 4
 
 # Design
 
-This chapter explains the strategies used to meet the requirements identified in the analysis
-
 ## Architecture
 
-- This section explains how the main components of the software are linked with each other
-- A high-level view of the various system components must be provided, for example by using components diagram
-- The chosen architecture must be described (for example, layered architecture)
+![Architecture](/pictures/architectureDiagram.png)
+
+- **VueJS App**: This includes the VueJs-based front-end that provides a dynamic and interactive user interface.
+- **FastApi App**: Implemented using Python FastAPI, this layer handles the core functionality of the application, processing
+  user requests, and managing data flow.
+  - **Router**: This component acts as an API and handles incoming requests from the Vue frontend.
+  - **Business Logic**: These are all the parts of the beckend that include the business logic to process incoming requests from the router.
+- **MySQL server**: Stores all the data related to users, experts, and help requests.
 
 ## Modelling
 
-- This section explains how the domain has been modelled
-- This section should contains some class diagrams
-    - The application's most relevant design aspects are highlighted, showcasing how they solve the problems described in the analysis
-    - Diagrams do not show implementation aspects that are not relevant, such as private fields
-- This section describe how the tactical patterns and other aspects of DDD seen in class were applied
+### Domain Modelling
+The domain model for 'Helpining' is designed using Domain-Driven Design (DDD) principles, ensuring that the core business logic is well encapsulated and decoupled from technical details.
 
+#### Class Diagrams:
+
+1. **Class Diagram**:
+   ![Architecture](/pictures/classDiagram.png)
+   - **Account**: Contains all the attributes for managing accounts:  `email`, `name`, `surname`, and `password`.
+   - **User**: Extends the account class to manage HelpRequests.
+   - **HelpRequest**: Represents a help request submitted by a user. Attributes include `id`, `title`, `body`, and `review`.
+   - **Expert**: Extends the Account class to include additional attributes specific to experts, such as `description` and `skills`.
+   - **HelpStatus**: Enumeration representing the status of a help request (e.g., Open, Resolved).
+   - **Skill**: Enumeration representing different areas of expertise (e.g., Engineering, Mathematics).
+
+3. **Domain Diagram**:
+    ![Architecture](/pictures/domainDiagram.png)
+   - **User**: Methods for profile management.
+   - **Users**: ...
+   - **HelpRequest**: Methods for managing help requests, such as `getTitle`, `setBody`, `addReview`.
+   - **Expert**: Methods for managing expert-specific data, such as `setDescription`, `addSkill`.
+   - **Experts**: ...
 
 ## Interaction
-- This section explains the behavior of the system, for instance using sequence or activity diagrams
+
+- This section explains the behavior of the system, for instance using sequence or activity diagrams.
+
+### Sequence Diagrams:
+Sequence diagrams show how objects interact in a particular scenario of a use case. They capture the flow of messages between objects.
+
+1. **Profile Update Sequence**:
+    ![Update Sequence ](/pictures/UpdateSeqDiagram.png)
+
+   - **Person**: Initiates the update profile request through the Vue Client.
+   - **Vue Client**: Sends the update request to the FastAPI server.
+   - **FastAPI Server**: Validates the JWT token, processes the update query, and interacts with the MySQL database to update the user's profile.
+   - **MySQL Database**: Updates the profile information and sends a response back through the FastAPI server to the Vue Client.
+
+2. **Choose Expert for Call Sequence**:
+   
+    ![Call Sequence ](/pictures/callSeqDiagram.png)
+
+   - **User**: Selects an expert for a call.
+   - **Vue Client**: Sends a request to the FastAPI server to initiate the call.
+   - **FastAPI Server**: Validates the JWT token, retrieves the expert's email, and sends a meeting request via email.
+   - **MySQL Database**: Stores and retrieves necessary data related to the expert and the call.
 
 ## Behaviour
-- This section explains the possible states that the system can be in and the events that cause the transition from one state to another, for instance using UML state diagrams
 
-## Data-related aspects
-- This section explains all the details related to the data, for instance:
-    - Data schema
-    - Data persistence technologies (if used), for example: MySQL, MongoDB, ...
+- This section explains the possible states that the system can be in and the events that cause the transition from one state to another, for instance using UML state diagrams.
+
+### Flowchart Diagram:
+
+[Flowchart](/pictures/flowchartDiagram.png)
+
+- **Start**: Initial state when the user begins a help request.
+- **Help Request**: User submits a help request.
+- **Send Help Request**: The request is sent and validated.
+- **Validate User JWT Token**: Authentication check.
+- **Filter Experts**: Experts are filtered based on the help request domain.
+- **Add Help Request to Expert Notice Board**: The request is added to the board for experts to view and respond.
+
