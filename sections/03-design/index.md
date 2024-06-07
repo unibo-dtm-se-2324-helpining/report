@@ -28,7 +28,7 @@ The domain model for 'Helpining' is designed using Domain-Driven Design (DDD) pr
    
    ![Architecture](/pictures/classDiagram.png)
 
-   - **Account**: Contains all the attributes for managing accounts:  `email`, `name`, `surname`, and `password`.
+   - **Account**: Is a role generalization of User and Expert and Contains all the attributes for managing accounts:  `email`, `name`, `surname`, and `password`.
    - **User**: Extends the account class to manage HelpRequests.
    - **HelpRequest**: Represents a help request submitted by a user. Attributes include `id`, `title`, `body`, and `review`.
    - **Expert**: Extends the Account class to include additional attributes specific to experts, such as `description` and `skills`.
@@ -37,13 +37,15 @@ The domain model for 'Helpining' is designed using Domain-Driven Design (DDD) pr
 
 3. **Domain Diagram**:
    
-    ![Architecture](/pictures/DomainDiagram.png)
+    ![Domain](/pictures/DomainDiagram.png)
 
+   - **Account**: Contains all the private attributes to manage the single account and all the public operations about those attributes.
+   - **Accounts**: Is a composition of many Account and contains all the public methods to manage the collection of Accounts.
    - **User**: Methods for profile management.
-   - **Users**: Operations about the collection of all the user profiles.
-   - **HelpRequest**: Methods for managing help requests, such as `getTitle`, `setBody`, `addReview`.
-   - **Expert**: Methods for managing expert-specific data, such as `setDescription`, `addSkill`.
-   - **Experts**: Operations about the collection of all the experts profiles.
+   - **Expert**: Methods for managing expert-specific data.
+   -  **HelpRequest**: Is a aggregation of User and Expert and contains the methods for managing the single help request.
+   -  **HelpRequests**: Is a composition of many HelpRequest and contains all the methods for managing help requests.
+
 
 ## Interaction
 
