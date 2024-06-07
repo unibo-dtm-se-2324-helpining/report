@@ -8,7 +8,7 @@ nav_order: 4
 
 ## Architecture
 
-![Architecture](/pictures/architectureDiagram.png)
+![Architecture](/report/pictures/architectureDiagram.png)
 
 - **VueJS App**: This includes the VueJs-based front-end that provides a dynamic and interactive user interface.
 - **FastApi App**: Implemented using Python FastAPI, this layer handles the core functionality of the application, processing
