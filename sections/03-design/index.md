@@ -26,7 +26,7 @@ The domain model for 'Helpining' is designed using Domain-Driven Design (DDD) pr
 
 1. **Class Diagram**:
    
-   ![Architecture](/pictures/classDiagram.png)
+   ![Architecture](/report/pictures/classDiagram.png)
 
    - **Account**: Is a role generalization of User and Expert and Contains all the attributes for managing accounts:  `email`, `name`, `surname`, and `password`.
    - **User**: Extends the account class to manage HelpRequests.
@@ -37,7 +37,7 @@ The domain model for 'Helpining' is designed using Domain-Driven Design (DDD) pr
 
 3. **Domain Diagram**:
    
-    ![Domain](/pictures/DomainDiagram.png)
+    ![Domain](/report/pictures/DomainDiagram.png)
 
    - **Account**: Contains all the private attributes to manage the single account and all the public operations about those attributes.
    - **Accounts**: Is a composition of many Account and contains all the public methods to manage the collection of Accounts.
@@ -54,7 +54,7 @@ Sequence diagrams show how objects interact in a particular scenario of a use ca
 
 1. **Profile Update Sequence**:
    
-    ![Update Sequence ](/pictures/UpdateSeqDiagram.png)
+    ![Update Sequence ](/report/pictures/UpdateSeqDiagram.png)
 
    - **Person**: Initiates the update profile request through the Vue Client.
    - **Vue Client**: Sends the update request to the FastAPI server.
@@ -63,7 +63,7 @@ Sequence diagrams show how objects interact in a particular scenario of a use ca
 
 3. **Choose Expert for Call Sequence**:
    
-    ![Call Sequence ](/pictures/callSeqDiagram.png)
+    ![Call Sequence ](/report/pictures/callSeqDiagram.png)
 
    - **User**: Selects an expert for a call.
    - **Vue Client**: Sends a request to the FastAPI server to initiate the call.
@@ -76,7 +76,7 @@ Sequence diagrams show how objects interact in a particular scenario of a use ca
 
 ### Flowchart Diagram:
 
-[Flowchart](/pictures/flowchartDiagram.png)
+[Flowchart](/report/pictures/flowchartDiagram.png)
 
 - **Start**: Initial state when the user begins a help request.
 - **Help Request**: User submits a help request.
