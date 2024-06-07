@@ -16,7 +16,7 @@ nav_order: 2
 - **Third-party Integration**: Utilizes Microsoft Teams to facilitate real-time problem-solving sessions between users and experts.
 
 ## Use Case Collection
-![Use cases](/pictures/useCase.png)
+![Use cases](/report/pictures/useCase.png)
 
 ### Use Case 1: User Upload help request
 - **Scenario**: A user encounters a complex problem in their field of study or work.
