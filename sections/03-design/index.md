@@ -34,7 +34,7 @@ The domain model for 'Helpining' is designed using Domain-Driven Design (DDD) pr
    - **Skill**: Enumeration representing different areas of expertise (e.g., Engineering, Mathematics).
 
 3. **Domain Diagram**:
-    ![Architecture](/pictures/domainDiagram.png)
+    ![Architecture](/pictures/DomainDiagram.png)
    - **User**: Methods for profile management.
    - **Users**: ...
    - **HelpRequest**: Methods for managing help requests, such as `getTitle`, `setBody`, `addReview`.
