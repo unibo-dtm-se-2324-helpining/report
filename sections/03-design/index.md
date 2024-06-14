@@ -12,9 +12,10 @@ nav_order: 4
 
 - **VueJS App**: This includes the VueJs-based front-end that provides a dynamic and interactive user interface.
 - **FastApi App**: Implemented using Python FastAPI, this layer handles the core functionality of the application, processing
-  user requests, and managing data flow.
-  - **Router**: This component acts as an API and handles incoming requests from the Vue frontend.
-  - **Business Logic**: These are all the parts of the beckend that include the business logic to process incoming requests from the router.
+  user requests, and managing data flow. This application is written following the Model-Controller-Service Architecture. The Model-Controller-Service is a software architectural pattern used on server-side applications to improve software maintainability and scalability. In this architecture, your backend application should be separated into three distinct parts that communicate with one another: namely the model, controller, and service layers.
+  - **Controller**: This component acts as an API and handles incoming requests from the Vue frontend.
+  - **Service**: These are all the parts of the beckend that include the business logic to process incoming requests from the router.
+  - **Model**: This component is responsible for interacting with the database to fulfill any business logic within our application. This could mean providing interfaces for other layers to get or insert data to the database.
 - **MySQL server**: Stores all the data related to users, experts, and help requests.
 
 ## Modelling
