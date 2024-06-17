@@ -224,25 +224,26 @@ Initializes the FastAPI app and APIRouter.
 
 #### HelpRequest Routes:
 
-insert_help_request: Inserts a new help request.
-update_help_request_status: Updates the status of an existing help request.
-insert_review: Inserts a review for a help request.
-delete_help_request: Deletes an existing help request.
+- insert_help_request: Inserts a new help request.
+- update_help_request_status: Updates the status of an existing help request.
+- insert_review: Inserts a review for a help request.
+- delete_help_request: Deletes an existing help request.
 
 #### Account Routes:
 
-insert_account: Inserts a new account.
-update_account_by_email: Updates an existing account by email.
-delete_account_by_email: Deletes an account by email.
-get_experts_by_skill: Retrieves experts by skill.
+- insert_account: Inserts a new account.
+- update_account_by_email: Updates an existing account by email.
+- delete_account_by_email: Deletes an account by email.
+- get_experts_by_skill: Retrieves experts by skill.
 
 #### Expert Routes:
 
-add_skill: Adds a skill to an expert.
-remove_skill: Removes a skill from an expert.
+- add_skill: Adds a skill to an expert.
+- remove_skill: Removes a skill from an expert.
 
 #### Operation Routes:
 
-get_choose_expert: Chooses an expert.
-get_generate_send_call_email: Generates and sends a call email.
-Each route uses the Depends function to inject dependencies (AccessService and extract_jwt). The Request object and form parameters (Form) are used to handle incoming data, and responses are structured as JSONResponse, maintaining consistency with the architectural style.
+- get_choose_expert: Chooses an expert.
+- get_generate_send_call_email: Generates and sends a call email.
+
+Each route uses the Depends function to inject dependencies (AccessService and extract_jwt) to extraxt and validate jwt with account informations.
