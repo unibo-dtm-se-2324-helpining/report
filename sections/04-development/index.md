@@ -35,119 +35,214 @@ Commit messages play a critical role in the clarity and maintainability of my pr
 - **Documentation and Code Comments**: Maintaining thorough documentation and code comments is a fundamental aspect of my development process. Clear documentation facilitates easier onboarding of new developers and enhances the maintainability of the codebase. Comments within the code should explain the 'why' behind complex logic, providing context that goes beyond the 'what' that is evident from the code itself.
 
 ### Implementation details
-ClassService is an important class of my project that is designed to automate the process of creating microsoft online meeting between user and exper.
-In particular the method genarate_send_call_email handles the entire workflow of microsoft authentication, quering from the MySQL database the expert data, creating the meeting and sending the email to the expert with the call url. At the end of the method i close MySQL connsection and return to the user the meeting url.
 
 ```python
-class CallService:
+from fastapi import FastAPI, APIRouter, HTTPException, Query, Request, Depends, Form, Body
 
-    def __init__(self):
-        self.connector = mysql.connector
+# Import your business service and JWT extraction logic
+from ..services.BusinessService import AccessService
+from ..services.JWTService import extract_jwt, JWTextracted  # Assuming you have these for JWT handling
 
-    def generate_send_call_email(self, expert_email, user_email, user_name, user_surname, client_id, client_secret, tenant_id):
-        # input data from vue client
-        # Authentication details
-        resource = "https://graph.microsoft.com/"
+# Initialize FastAPI application
+app = FastAPI()
+controller = APIRouter()
 
-        # Get access token
-        auth_url = f"https://logisun.microsoftonline.com/{tenant_id}/oauth2/token"
-        auth_data = {
-            "grant_type": "client_credentials",
-            "client_id": client_id,
-            "client_secret": client_secret,
-            "resource": resource
-        }
+# HelpRequest routes
+@controller.post("/help_requests/")
+async def upload_help_request(
+    request: Request,
+    id: str,
+    title: str,
+    body: str,
+    skill: str,
+    service: AccessService = Depends(AccessService),
+    account: JWTextracted = Depends(extract_jwt)
+):
+    """
+    Endpoint to insert a new help request.
+    """
+    return service.insert_help_request(id, title, body, skill)
 
-        auth_response = requests.post(auth_url, data=auth_data)
-        auth_response_data = auth_response.json()
-        access_token = auth_response_data["access_token"]
+@controller.put("/help_requests/{id}/status/")
+async def update_help_request_status(
+    request: Request,
+    id: str,
+    new_status: str,
+    service: AccessService = Depends(AccessService),
+    account: JWTextracted = Depends(extract_jwt)
+):
+    """
+    Endpoint to update the status of a help request.
+    """
+    return service.update_help_request_status(id, new_status)
 
-        # Set headers
-        headers = {
-            "Authorization": "Bearer " + access_token,
-            "Content-Type": "application/json"
-        }
+@controller.put("/help_requests/{id}/review/")
+async def insert_review(
+    request: Request,
+    id: str,
+    review: str,
+    service: AccessService = Depends(AccessService),
+    account: JWTextracted = Depends(extract_jwt)
+):
+    """
+    Endpoint to insert a review for a help request.
+    """
+    return service.insert_review(id, review)
 
-        # API endpoint to create a meeting
-        create_meeting_url = "https://graph.microsoft.com/v1.0/me/onlineMeetings"
+@controller.delete("/help_requests/{id}/")
+async def delete_help_request(
+    request: Request,
+    id: str,
+    service: AccessService = Depends(AccessService),
+    account: JWTextracted = Depends(extract_jwt)
+):
+    """
+    Endpoint to delete a help request.
+    """
+    return service.delete_help_request(id)
 
-        # Set up the meeting payload
-        start_call = datetime.now()
-        end_call = datetime.now() + timedelta(minutes=15)
-        meeting_payload = {
-            "startDateTime": start_call.strftime(),
-            "endDateTime": end_call.strftime(),
-            "subject": "Help call meeting"
-        }
+# Account routes
+@controller.post("/accounts/")
+async def insert_account(
+    request: Request,
+    email: str,
+    name: str,
+    surname: str,
+    password: str,
+    description: str,
+    service: AccessService = Depends(AccessService),
+    account: JWTextracted = Depends(extract_jwt)
+):
+    """
+    Endpoint to insert a new account.
+    """
+    return service.insert_account(email, name, surname, password, description)
 
-        # Create the meeting
-        response = requests.post(create_meeting_url, headers=headers, data=json.dumps(meeting_payload))
+@controller.put("/accounts/")
+async def update_account_by_email(
+    request: Request,
+    email: str,
+    name: str = Form(None),
+    surname: str = Form(None),
+    password: str = Form(None),
+    description: str = Form(None),
+    service: AccessService = Depends(AccessService),
+    account: JWTextracted = Depends(extract_jwt)
+):
+    """
+    Endpoint to update an existing account by email.
+    """
+    return service.update_account_by_email(email, name, surname, password, description)
 
-        if response.status_code == 200:
-            meeting_data = response.json()
-            meeting_id = meeting_data["id"]
-            meeting_join_url = meeting_data["joinUrl"]
-            print("Meeting created successfully. Meeting ID:", meeting_id)
+@controller.delete("/accounts/")
+async def delete_account_by_email(
+    request: Request,
+    email: str,
+    service: AccessService = Depends(AccessService),
+    account: JWTextracted = Depends(extract_jwt)
+):
+    """
+    Endpoint to delete an account by email.
+    """
+    return service.delete_account_by_email(email)
 
-            # Connect to MySQL database
-            db_connection = self.connector.connect(
-            host="db_host",
-            user="db_user",
-            password="db_password",
-            database="db_name"
-        )
+@controller.get("/accounts/experts_by_skill/")
+async def get_experts_by_skill(
+    request: Request,
+    skill: str,
+    service: AccessService = Depends(AccessService),
+    account: JWTextracted = Depends(extract_jwt)
+):
+    """
+    Endpoint to get experts by skill.
+    """
+    return service.get_experts_by_skill(skill)
 
-            cursor = db_connection.cursor(dictionary=True)
+# Expert routes
+@controller.post("/experts/{email}/skills/")
+async def add_skill(
+    request: Request,
+    email: str,
+    skill: str,
+    service: AccessService = Depends(AccessService),
+    account: JWTextracted = Depends(extract_jwt)
+):
+    """
+    Endpoint to add a skill to an expert.
+    """
+    return service.add_skill(email, skill)
 
-            # Fetch participant details
-            cursor.execute("SELECT email, name, surname FROM ACCOUNT_TABLE WHERE email = %s", (expert_email,))
-            participant = cursor.fetchone()
+@controller.delete("/experts/{email}/skills/")
+async def remove_skill(
+    request: Request,
+    email: str,
+    skill: str,
+    service: AccessService = Depends(AccessService),
+    account: JWTextracted = Depends(extract_jwt)
+):
+    """
+    Endpoint to remove a skill from an expert.
+    """
+    return service.remove_skill(email, skill)
 
-            # Email details HTML
-            email_subject = "Meeting Invitation: Help call meeting"
-            email_body = f"""
-            <p>Dear Expert {participant['name']} {participant['surname']},</p>
-            <p>You have been invited to a meeting for helping {user_name} {user_surname}.</p>
-            <p><b>Subject:</b> Help call meeting</p>
-            <p><b>Start Time:</b> {start_call}</p>
-            <p><b>End Time:</b> {end_call}</p>
-            <p><b>Join URL:</b> <a href="{meeting_join_url}">{meeting_join_url}</a></p>
-            <p>Best regards,<br>Helpining</p>
-            """
-            
-            # API endpoint to send email
-            send_mail_url = "https://graph.microsoft.com/v1.0/me/sendMail"
-            email_payload = {
-                "message": {
-                    "subject": email_subject,
-                    "body": {
-                        "contentType": "HTML",
-                        "content": email_body
-                    },
-                    "toRecipients": [
-                        {
-                            "emailAddress": {
-                                "address": expert_email
-                            }
-                        }
-                    ]
-                }
-            }
+# Operation routes
+@controller.get("/operations/choose_expert/")
+async def get_choose_expert(
+    request: Request,
+    expert_email: str,
+    service: AccessService = Depends(AccessService),
+    account: JWTextracted = Depends(extract_jwt)
+):
+    """
+    Endpoint to choose an expert.
+    """
+    return service.choose_expert(account, expert_email)
 
-            # Close the database connection
-            cursor.close()
-            db_connection.close()
-            
-            # Send the email
-            email_response = requests.post(send_mail_url, headers=headers, data=json.dumps(email_payload))
-            if email_response.status_code == 202:
-                print("Email sent successfully to:", expert_email)
-                # return the meeting url also to the user client
-                return meeting_join_url 
-            else:
-                print("Failed to send email. Status code:", email_response.status_code, "Response:", email_response.text)
+@controller.get("/operations/generate_send_call_email/")
+async def get_generate_send_call_email(
+    request: Request,
+    expert_email: str,
+    service: AccessService = Depends(AccessService),
+    account: JWTextracted = Depends(extract_jwt)
+):
+    """
+    Endpoint to generate and send a call email.
+    """
+    return service.generate_send_call_email(account, expert_email)
 
-        else:
-            print("Failed to create meeting. Status code:", response.status_code)
+# Include the router in the FastAPI app
+app.include_router(controller)
 ```
 
+#### Import Statements:
+
+Imports FastAPI, APIRouter, and necessary dependencies.
+Imports the AccessService and JWT extraction logic (extract_jwt and JWTextracted).
+#### Initialization:
+
+Initializes the FastAPI app and APIRouter.
+
+#### HelpRequest Routes:
+
+insert_help_request: Inserts a new help request.
+update_help_request_status: Updates the status of an existing help request.
+insert_review: Inserts a review for a help request.
+delete_help_request: Deletes an existing help request.
+
+#### Account Routes:
+
+insert_account: Inserts a new account.
+update_account_by_email: Updates an existing account by email.
+delete_account_by_email: Deletes an account by email.
+get_experts_by_skill: Retrieves experts by skill.
+
+#### Expert Routes:
+
+add_skill: Adds a skill to an expert.
+remove_skill: Removes a skill from an expert.
+
+#### Operation Routes:
+
+get_choose_expert: Chooses an expert.
+get_generate_send_call_email: Generates and sends a call email.
+Each route uses the Depends function to inject dependencies (AccessService and extract_jwt). The Request object and form parameters (Form) are used to handle incoming data, and responses are structured as JSONResponse, maintaining consistency with the architectural style.
