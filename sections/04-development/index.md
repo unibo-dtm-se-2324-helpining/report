@@ -40,12 +40,25 @@ Commit messages play a critical role in the clarity and maintainability of my pr
 from fastapi import FastAPI, APIRouter, HTTPException, Query, Request, Depends, Form, Body
 
 # Import your business service and JWT extraction logic
-from ..services.BusinessService import AccessService
+from ..services.BusinessService import BusinessService
+from ..services.AccessService import AccessService
 from ..services.JWTService import extract_jwt, JWTextracted  # Assuming you have these for JWT handling
 
 # Initialize FastAPI application
 app = FastAPI()
 controller = APIRouter()
+
+# Login
+@controller.post("/help_requests/")
+async def upload_help_request(
+    username: str,
+    password: str
+):
+    """
+    Endpoint to get JWT token and login
+    """
+    return AccessService.login(username,password)
+
 
 # HelpRequest routes
 @controller.post("/help_requests/")
@@ -55,7 +68,7 @@ async def upload_help_request(
     title: str,
     body: str,
     skill: str,
-    service: AccessService = Depends(AccessService),
+    service: BusinessService = Depends(BusinessService),
     account: JWTextracted = Depends(extract_jwt)
 ):
     """
@@ -68,7 +81,7 @@ async def update_help_request_status(
     request: Request,
     id: str,
     new_status: str,
-    service: AccessService = Depends(AccessService),
+    service: BusinessService = Depends(BusinessService),
     account: JWTextracted = Depends(extract_jwt)
 ):
     """
@@ -81,7 +94,7 @@ async def insert_review(
     request: Request,
     id: str,
     review: str,
-    service: AccessService = Depends(AccessService),
+    service: BusinessService = Depends(BusinessService),
     account: JWTextracted = Depends(extract_jwt)
 ):
     """
@@ -93,7 +106,7 @@ async def insert_review(
 async def delete_help_request(
     request: Request,
     id: str,
-    service: AccessService = Depends(AccessService),
+    service: BusinessService = Depends(BusinessService),
     account: JWTextracted = Depends(extract_jwt)
 ):
     """
@@ -110,7 +123,7 @@ async def insert_account(
     surname: str,
     password: str,
     description: str,
-    service: AccessService = Depends(AccessService),
+    service: BusinessService = Depends(BusinessService),
     account: JWTextracted = Depends(extract_jwt)
 ):
     """
@@ -126,7 +139,7 @@ async def update_account_by_email(
     surname: str = Form(None),
     password: str = Form(None),
     description: str = Form(None),
-    service: AccessService = Depends(AccessService),
+    service: BusinessService = Depends(BusinessService),
     account: JWTextracted = Depends(extract_jwt)
 ):
     """
@@ -138,7 +151,7 @@ async def update_account_by_email(
 async def delete_account_by_email(
     request: Request,
     email: str,
-    service: AccessService = Depends(AccessService),
+    service: BusinessService = Depends(BusinessService),
     account: JWTextracted = Depends(extract_jwt)
 ):
     """
@@ -150,7 +163,7 @@ async def delete_account_by_email(
 async def get_experts_by_skill(
     request: Request,
     skill: str,
-    service: AccessService = Depends(AccessService),
+    service: BusinessService = Depends(BusinessService),
     account: JWTextracted = Depends(extract_jwt)
 ):
     """
@@ -164,7 +177,7 @@ async def add_skill(
     request: Request,
     email: str,
     skill: str,
-    service: AccessService = Depends(AccessService),
+    service: BusinessService = Depends(BusinessService),
     account: JWTextracted = Depends(extract_jwt)
 ):
     """
@@ -177,7 +190,7 @@ async def remove_skill(
     request: Request,
     email: str,
     skill: str,
-    service: AccessService = Depends(AccessService),
+    service: BusinessService = Depends(BusinessService),
     account: JWTextracted = Depends(extract_jwt)
 ):
     """
@@ -190,7 +203,7 @@ async def remove_skill(
 async def get_choose_expert(
     request: Request,
     expert_email: str,
-    service: AccessService = Depends(AccessService),
+    service: BusinessService = Depends(BusinessService),
     account: JWTextracted = Depends(extract_jwt)
 ):
     """
@@ -202,7 +215,7 @@ async def get_choose_expert(
 async def get_generate_send_call_email(
     request: Request,
     expert_email: str,
-    service: AccessService = Depends(AccessService),
+    service: BusinessService = Depends(BusinessService),
     account: JWTextracted = Depends(extract_jwt)
 ):
     """
@@ -212,6 +225,7 @@ async def get_generate_send_call_email(
 
 # Include the router in the FastAPI app
 app.include_router(controller)
+
 ```
 
 #### Import Statements:
@@ -221,6 +235,10 @@ Imports the AccessService and JWT extraction logic (extract_jwt and JWTextracted
 #### Initialization:
 
 Initializes the FastAPI app and APIRouter.
+
+#### LoginRequest Routes:
+
+- login: Get JWT toke for authentication.
 
 #### HelpRequest Routes:
 
