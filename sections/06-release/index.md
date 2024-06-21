@@ -8,7 +8,78 @@ nav_order: 7
 
 ## What to Release, Where, and How
 
-- **What to Release**: The release package includes the executable application, its source code, all associated documentation, and necessary deployment scripts or resources required for installation and operation...........
+### What to Release
+
+The release package for a FastAPI application includes several key components:
+
+- **Executable Application**: The core executable files that constitute the application.
+
+- **Source Code**: The complete source code organized in modules and packages. This includes:
+  - **Main Application Code**: The primary codebase of the FastAPI application.
+  - **Modules and Packages**: Structured code directories, typically organized as follows:
+
+    ```plaintext
+helpining-api/
+├── app/
+│   ├── __init__.py
+│   ├── main.py
+│   ├── model/
+│   ├── controller/
+│   ├── services/
+│   └── utils/
+├── .env
+├── pyproject.toml
+├── poetry.lock
+└── README.md
+    ```
+
+- **Dependency Management Files**:
+  - `pyproject.toml`: Specifies the project dependencies, scripts, and other metadata.
+  - `poetry.lock`: Locks the exact versions of the dependencies used in the project to ensure consistency across different environments.
+
+### Where to Release
+
+Releases can be made to:
+
+- **Test PyPI**: A separate instance of PyPI used for testing the distribution process. Useful for ensuring that the package can be correctly built, uploaded, and installed before releasing to the main PyPI.
+- **PyPI**: The official repository for Python packages where your final, production-ready packages will be published. This makes your package available to the broader Python community.
+
+### How to Release
+
+#### Steps to Release:
+
+1. **Build Your Project**:
+   Use Poetry to build the project, creating the necessary distribution archives.
+
+   ```sh
+   poetry build
+   ```
+
+2. **Publish to Test-PyPI**:
+   Ensure your credentials are set for Test-PyPI:
+
+   ```sh
+   poetry config pypi-token.testpypi <pypi-token>
+   ```
+
+   Then publish to Test-PyPI:
+
+   ```sh
+   poetry publish --repository testpypi
+   ```
+
+3. **Publish to PyPI**:
+   Ensure your credentials are set for PyPI:
+
+   ```sh
+   poetry config pypi-token.pypi <pypi-token>
+   ```
+
+   Then publish to PyPI:
+
+   ```sh
+   poetry publish
+   ```
 
 ## Licence
 - **Chosen License**: Apache License 2.0
