@@ -19,18 +19,18 @@ The release package for a FastAPI application includes several key components:
   - **Modules and Packages**: Structured code directories, typically organized as follows:
 
     ```plaintext
-helpining-api/
-├── app/
-│   ├── __init__.py
-│   ├── main.py
-│   ├── model/
-│   ├── controller/
-│   ├── services/
-│   └── utils/
-├── .env
-├── pyproject.toml
-├── poetry.lock
-└── README.md
+        helpining-api/
+        ├── app/
+        │   ├── __init__.py
+        │   ├── main.py
+        │   ├── model/
+        │   ├── controller/
+        │   ├── services/
+        │   └── utils/
+        ├── .env
+        ├── pyproject.toml
+        ├── poetry.lock
+        └── README.md
     ```
 
 - **Dependency Management Files**:
