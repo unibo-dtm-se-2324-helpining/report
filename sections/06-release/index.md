@@ -10,76 +10,111 @@ nav_order: 7
 
 ### What to Release
 
-The release package for a FastAPI application includes several key components:
+The release package for the `helpining-api` application includes several key components for both the FastAPI backend and the Vue.js frontend:
 
-- **Executable Application**: The core executable files that constitute the application.
+#### Backend (FastAPI)
 
+- **Executable Application**: The core executable files that constitute the backend application.
 - **Source Code**: The complete source code organized in modules and packages. This includes:
   - **Main Application Code**: The primary codebase of the FastAPI application.
   - **Modules and Packages**: Structured code directories, typically organized as follows:
 
     ```plaintext
-        helpining-api/
-        ├── app/
-        │   ├── __init__.py
-        │   ├── main.py
-        │   ├── model/
-        │   ├── controller/
-        │   ├── services/
-        │   └── utils/
-        ├── .env
-        ├── pyproject.toml
-        ├── poetry.lock
-        └── README.md
+    helpining-api/
+    ├── app/
+    │   ├── __init__.py
+    │   ├── main.py
+    │   ├── model/
+    │   ├── controller/
+    │   ├── services/
+    │   └── utils/
+    ├── .env
+    ├── pyproject.toml
+    ├── poetry.lock
+    └── README.md
     ```
 
 - **Dependency Management Files**:
   - `pyproject.toml`: Specifies the project dependencies, scripts, and other metadata.
   - `poetry.lock`: Locks the exact versions of the dependencies used in the project to ensure consistency across different environments.
 
+#### Frontend (Vue.js)
+
+- **Executable Application**: The compiled production-ready files.
+- **Source Code**: The complete source code for the Vue.js application. This includes:
+  - **Main Application Code**: The primary codebase of the Vue.js application.
+  - **Modules and Packages**: Structured code directories, typically organized as follows:
+
+    ```plaintext
+    helpining-frontend/
+    ├── src/
+    │   ├── assets/
+    │   ├── components/
+    │   ├── views/
+    │   ├── App.vue
+    │   ├── main.js
+    ├── public/
+    ├── .env
+    ├── package.json
+    ├── package-lock.json
+    └── README.md
+    ```
+
 ### Where to Release
 
 Releases can be made to:
 
+#### Backend (FastAPI)
+
 - **Test PyPI**: A separate instance of PyPI used for testing the distribution process. Useful for ensuring that the package can be correctly built, uploaded, and installed before releasing to the main PyPI.
 - **PyPI**: The official repository for Python packages where your final, production-ready packages will be published. This makes your package available to the broader Python community.
 
+#### Frontend (Vue.js)
+
 ### How to Release
 
-#### Steps to Release:
+#### Backend (FastAPI)
 
 1. **Build Your Project**:
    Use Poetry to build the project, creating the necessary distribution archives.
 
    ```sh
-   poetry build
-   ```
+     poetry build
+    ```
+Publish to Test-PyPI:
+Ensure your credentials are set for Test-PyPI:
 
-2. **Publish to Test-PyPI**:
-   Ensure your credentials are set for Test-PyPI:
+ ```sh
+poetry config pypi-token.testpypi <pypi-token>
+ ```
+Then publish to Test-PyPI:
 
-   ```sh
-   poetry config pypi-token.testpypi <pypi-token>
-   ```
+ ```sh
+poetry publish --repository testpypi
+ ```
 
-   Then publish to Test-PyPI:
+Publish to PyPI:
+Ensure your credentials are set for PyPI:
 
-   ```sh
-   poetry publish --repository testpypi
-   ```
+ ```sh
+  poetry config pypi-token.pypi <pypi-token>
+ ```
 
-3. **Publish to PyPI**:
-   Ensure your credentials are set for PyPI:
+Then publish to PyPI:
 
-   ```sh
-   poetry config pypi-token.pypi <pypi-token>
-   ```
+ ```sh
+  poetry publish
+ ```
+### Frontend (Vue.js)
 
-   Then publish to PyPI:
+Build Your Project:
+Run the build command to generate the production-ready files.
 
-   ```sh
-   poetry publish
-   ```
+ ```sh
+  npm run build
+ ```
+
+Deploy to Hosting Service
 
 ## Licence
 - **Chosen License**: Apache License 2.0
