@@ -38,7 +38,7 @@ Verify the Containers: Check if the containers are running.
   docker-compose ps
 ```
 ### Step 5: Access the Application
-Open your browser and go to http://<server-ip>:8000/docs to access the application api.
+Open your browser and go to http://server-ip:8000/docs to access the application api.
 
 ## Steps to Deploy Frontend
 
@@ -65,4 +65,4 @@ Verify the Containers: Check if the containers are running.
 ```
 
 ### Step 5: Access the Frontend
-Open your browser and go to http://<server-ip> to access the frontend pages
+Open your browser and go to http://server-ip to access the frontend pages
