@@ -49,8 +49,8 @@ app = FastAPI()
 controller = APIRouter()
 
 # Login
-@controller.post("/help_requests/")
-async def upload_help_request(
+@controller.post("/login/")
+async def login(
     username: str,
     password: str
 ):
