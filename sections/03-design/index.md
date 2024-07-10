@@ -27,7 +27,7 @@ The domain model for 'Helpining' is designed using Domain-Driven Design (DDD) pr
 
 1. **Class Diagram**:
    
-   ![Architecture](/report/pictures/classDiagram.png)
+   ![Class](/report/pictures/classDiagram.png)
 
    - **Account**: Is a role generalization of User and Expert and Contains all the attributes for managing accounts:  `email`, `name`, `surname`, and `password`.
    - **User**: Extends the account class to manage HelpRequests.
@@ -38,7 +38,7 @@ The domain model for 'Helpining' is designed using Domain-Driven Design (DDD) pr
 
 3. **Domain Diagram**:
    
-    ![Domain](/report/pictures/DpmainDiagram.png)
+    ![Domain](/report/pictures/domainDiagram.png)
 
    - **Account**: Contains all the private attributes to manage the single account and all the public operations about those attributes.
    - **Accounts**: Is a composition of many Account and contains all the public methods to manage the collection of Accounts.
