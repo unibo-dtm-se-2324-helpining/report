@@ -38,7 +38,7 @@ The domain model for 'Helpining' is designed using Domain-Driven Design (DDD) pr
 
 3. **Domain Diagram**:
    
-    ![Domain](/report/pictures/DomainDiagram.png)
+    ![Domain](/report/pictures/DpmainDiagram.png)
 
    - **Account**: Contains all the private attributes to manage the single account and all the public operations about those attributes.
    - **Accounts**: Is a composition of many Account and contains all the public methods to manage the collection of Accounts.
