@@ -36,6 +36,8 @@ Commit messages play a critical role in the clarity and maintainability of my pr
 
 ### Implementation details
 
+Above the controller to manage the basic API of the backend Application:
+
 ```python
 from fastapi import FastAPI, APIRouter, HTTPException, Query, Request, Depends, Form, Body
 
@@ -45,7 +47,6 @@ from ..services.AccessService import AccessService
 from ..services.JWTService import extract_jwt, JWTextracted  # Assuming you have these for JWT handling
 
 # Initialize FastAPI application
-app = FastAPI()
 controller = APIRouter()
 
 # Login
@@ -63,168 +64,141 @@ async def login(
 # HelpRequest routes
 @controller.post("/help_requests/")
 async def upload_help_request(
-    request: Request,
     id: str,
     title: str,
     body: str,
     skill: str,
-    service: BusinessService = Depends(BusinessService),
     account: JWTextracted = Depends(extract_jwt)
 ):
     """
     Endpoint to insert a new help request.
     """
-    return service.insert_help_request(id, title, body, skill)
+    return BusinessService.insert_help_request(id, title, body, skill, account)
 
-@controller.put("/help_requests/{id}/status/")
+@controller.post("/help_requests/status/")
 async def update_help_request_status(
-    request: Request,
     id: str,
     new_status: str,
-    service: BusinessService = Depends(BusinessService),
     account: JWTextracted = Depends(extract_jwt)
 ):
     """
     Endpoint to update the status of a help request.
     """
-    return service.update_help_request_status(id, new_status)
+    return BusinessService.update_help_request_status(id, new_status)
 
-@controller.put("/help_requests/{id}/review/")
+@controller.post("/help_requests/review/")
 async def insert_review(
-    request: Request,
     id: str,
     review: str,
-    service: BusinessService = Depends(BusinessService),
     account: JWTextracted = Depends(extract_jwt)
 ):
     """
     Endpoint to insert a review for a help request.
     """
-    return service.insert_review(id, review)
+    return BusinessService.insert_review(id, review)
 
-@controller.delete("/help_requests/{id}/")
+@controller.delete("/help_requests/delete")
 async def delete_help_request(
-    request: Request,
     id: str,
-    service: BusinessService = Depends(BusinessService),
     account: JWTextracted = Depends(extract_jwt)
 ):
     """
     Endpoint to delete a help request.
     """
-    return service.delete_help_request(id)
+    return BusinessService.delete_help_request(id)
 
 # Account routes
 @controller.post("/accounts/")
 async def insert_account(
-    request: Request,
     email: str,
     name: str,
     surname: str,
     password: str,
     description: str,
-    service: BusinessService = Depends(BusinessService),
     account: JWTextracted = Depends(extract_jwt)
 ):
     """
     Endpoint to insert a new account.
     """
-    return service.insert_account(email, name, surname, password, description)
+    return BusinessService.insert_account(email, name, surname, password, description)
 
-@controller.put("/accounts/")
+@controller.post("/accounts/")
 async def update_account_by_email(
-    request: Request,
     email: str,
     name: str = Form(None),
     surname: str = Form(None),
     password: str = Form(None),
     description: str = Form(None),
-    service: BusinessService = Depends(BusinessService),
     account: JWTextracted = Depends(extract_jwt)
 ):
     """
     Endpoint to update an existing account by email.
     """
-    return service.update_account_by_email(email, name, surname, password, description)
+    return BusinessService.update_account_by_email(email, name, surname, password, description)
 
 @controller.delete("/accounts/")
 async def delete_account_by_email(
-    request: Request,
     email: str,
-    service: BusinessService = Depends(BusinessService),
     account: JWTextracted = Depends(extract_jwt)
 ):
     """
     Endpoint to delete an account by email.
     """
-    return service.delete_account_by_email(email)
+    return BusinessService.delete_account_by_email(email)
 
 @controller.get("/accounts/experts_by_skill/")
 async def get_experts_by_skill(
-    request: Request,
     skill: str,
-    service: BusinessService = Depends(BusinessService),
     account: JWTextracted = Depends(extract_jwt)
 ):
     """
     Endpoint to get experts by skill.
     """
-    return service.get_experts_by_skill(skill)
+    return BusinessService.get_experts_by_skill(skill)
 
 # Expert routes
-@controller.post("/experts/{email}/skills/")
+@controller.post("/experts/skills/")
 async def add_skill(
-    request: Request,
     email: str,
     skill: str,
-    service: BusinessService = Depends(BusinessService),
     account: JWTextracted = Depends(extract_jwt)
 ):
     """
     Endpoint to add a skill to an expert.
     """
-    return service.add_skill(email, skill)
+    return BusinessService.add_skill(email, skill)
 
-@controller.delete("/experts/{email}/skills/")
+@controller.delete("/experts/skills/")
 async def remove_skill(
-    request: Request,
     email: str,
     skill: str,
-    service: BusinessService = Depends(BusinessService),
     account: JWTextracted = Depends(extract_jwt)
 ):
     """
     Endpoint to remove a skill from an expert.
     """
-    return service.remove_skill(email, skill)
+    return BusinessService.remove_skill(email, skill)
 
 # Operation routes
 @controller.get("/operations/choose_expert/")
 async def get_choose_expert(
-    request: Request,
     expert_email: str,
-    service: BusinessService = Depends(BusinessService),
     account: JWTextracted = Depends(extract_jwt)
 ):
     """
     Endpoint to choose an expert.
     """
-    return service.choose_expert(account, expert_email)
+    return BusinessService.choose_expert(account, expert_email)
 
 @controller.get("/operations/generate_send_call_email/")
 async def get_generate_send_call_email(
-    request: Request,
     expert_email: str,
-    service: BusinessService = Depends(BusinessService),
     account: JWTextracted = Depends(extract_jwt)
 ):
     """
     Endpoint to generate and send a call email.
     """
-    return service.generate_send_call_email(account, expert_email)
-
-# Include the router in the FastAPI app
-app.include_router(controller)
+    return BusinessService.generate_send_call_email(account, expert_email)
 
 ```
 
@@ -232,9 +206,10 @@ app.include_router(controller)
 
 Imports FastAPI, APIRouter, and necessary dependencies.
 Imports the AccessService and JWT extraction logic (extract_jwt and JWTextracted).
+
 #### Initialization:
 
-Initializes the FastAPI app and APIRouter.
+Initializes APIRouter.
 
 #### LoginRequest Routes:
 
