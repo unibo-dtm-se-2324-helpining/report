@@ -44,7 +44,7 @@ The domain model for 'Helpining' is designed using Domain-Driven Design (DDD) pr
    - **Accounts**: Is a composition of many Account and contains all the public methods to manage the collection of Accounts.
    - **User**: Methods for profile management.
    - **Expert**: Methods for managing expert-specific data.
-   -  **HelpRequest**: Is a aggregation of User and Expert and contains the methods for managing the single help request.
+   -  **HelpRequest**: Contains the methods and the attributes for managing the single help request.
    -  **HelpRequests**: Is a composition of many HelpRequest and contains all the methods for managing help requests.
 
 
