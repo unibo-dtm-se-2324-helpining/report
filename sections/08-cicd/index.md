@@ -69,9 +69,9 @@ CI/CD (Continuous Integration and Continuous Deployment) automates the process o
                  run: poetry run python -m unittest discover -v -s tests
          
          ```
-     - Sets up the Python environment.
-     - Installs dependencies using Poetry.
-     - Runs tests to ensure the backend code is functioning correctly.
+        - Sets up the Python environment.
+        - Installs dependencies using Poetry.
+        - Runs tests to ensure the backend code is functioning correctly.
 
    - **Release**:
            
