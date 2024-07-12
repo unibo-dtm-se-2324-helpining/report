@@ -8,17 +8,13 @@ nav_order: 8
 
 ## Steps to Deploy Backend
 
-### Step 1: Prepare the Environment Configuration File
-
-Create a `.env` file in the root directory of your project and add the necessary environment variables.
-
-### Step 2: Dockerize the Backend Application
+### Step 1: Dockerize the Backend Application
 Create a Dockerfile in the root directory of your project to define the Docker image for your FastAPI application.
 
-### Step 3: Create a Docker Compose File
+### Step 2: Create a Docker Compose File
 Create a docker-compose.yml file to manage your application and its dependencies, such as the MySQL database.
 
-### Step 4: Deploy the Application
+### Step 3: Deploy the Application
 Build and Start the Containers: Use Docker Compose to build and start the containers.
 
 ```sh
@@ -29,7 +25,7 @@ Verify the Containers: Check if the containers are running.
 ```sh
   docker-compose ps
 ```
-### Step 5: Access the Application
+### Step 4: Access the Application
 Open your browser and go to http://server-ip:8000/docs to access the application api.
 
 ## Steps to Deploy Frontend
@@ -37,10 +33,10 @@ Open your browser and go to http://server-ip:8000/docs to access the application
 ### Step 1: Dockerize the Frontend
 Create a Dockerfile in the Vue.js project root directory to define the Docker image for the frontend.
 
-### Step 3: Create a Docker Compose File
+### Step 2: Create a Docker Compose File
 Create a docker-compose.yml file to manage your application and its dependencies, such as the MySQL database.
 
-### Step 4: Deploy the Application
+### Step 3: Deploy the Application
 Build and Start the Containers: Use Docker Compose to build and start the containers.
 
 ```sh
@@ -52,5 +48,5 @@ Verify the Containers: Check if the containers are running.
   docker-compose ps
 ```
 
-### Step 5: Access the Frontend
+### Step 4: Access the Frontend
 Open your browser and go to http://server-ip to access the frontend pages
