@@ -6,14 +6,6 @@ nav_order: 8
 
 # Deployment
 
-## Prerequisites
-
-1. **A server or cloud instance**: using a service like AWS.
-2. **Docker installed**: Docker is used to containerize the application.
-3. **Docker Compose installed**: Docker Compose is used to run multi-container Docker applications.
-4. **Access to a MySQL database**: This is used to store the application data.
-5. **The environment configuration file (`.env`)**: This file contains all the necessary environment variables.
-
 ## Steps to Deploy Backend
 
 ### Step 1: Prepare the Environment Configuration File
