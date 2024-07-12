@@ -12,7 +12,7 @@ nav_order: 8
 Create a Dockerfile in the root directory of your project to define the Docker image for your FastAPI application.
 
 ### Step 2: Create a Docker Compose File
-Create a docker-compose.yml file to manage your application and its dependencies, such as the MySQL database.
+Create a docker-compose.yml file to manage your application and its dependencies.
 
 ### Step 3: Deploy the Application
 Build and Start the Containers: Use Docker Compose to build and start the containers.
