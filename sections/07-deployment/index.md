@@ -34,15 +34,11 @@ Open your browser and go to http://server-ip:8000/docs to access the application
 
 ## Steps to Deploy Frontend
 
-### Step 1: Build the Frontend
-Navigate to the Vue.js project directory and run the following command to build the production files:
-
-```sh
-  npm run build
-```
-
-### Step 2: Dockerize the Frontend
+### Step 1: Dockerize the Frontend
 Create a Dockerfile in the Vue.js project root directory to define the Docker image for the frontend.
+
+### Step 3: Create a Docker Compose File
+Create a docker-compose.yml file to manage your application and its dependencies, such as the MySQL database.
 
 ### Step 4: Deploy the Application
 Build and Start the Containers: Use Docker Compose to build and start the containers.
