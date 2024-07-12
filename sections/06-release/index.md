@@ -13,12 +13,6 @@ nav_order: 7
 The release package for the `helpining-api` application includes several key components for both the FastAPI backend and the Vue.js frontend:
 
 #### Backend (FastAPI)
-
-- **Executable Application**: The core executable files that constitute the backend application.
-- **Source Code**: The complete source code organized in modules and packages. This includes:
-  - **Main Application Code**: The primary codebase of the FastAPI application.
-  - **Modules and Packages**: Structured code directories, typically organized as follows:
-
     ```plaintext
     helpining-api/
     ├── app/
@@ -28,23 +22,20 @@ The release package for the `helpining-api` application includes several key com
     │   ├── controller/
     │   ├── services/
     │   └── utils/
-    ├── .env
+    ├── .env    
+    ├── requirements.txt
     ├── pyproject.toml
     ├── poetry.lock
     └── README.md
     ```
-
-- **Dependency Management Files**:
-  - `pyproject.toml`: Specifies the project dependencies, scripts, and other metadata.
-  - `poetry.lock`: Locks the exact versions of the dependencies used in the project to ensure consistency across different environments.
+- **Source Code**: The complete source code organized in modules and packages. This includes:
+  - **Main Application Code**: The primary codebase of the FastAPI application in the path app/.
+  - **Environment and Dependencies**: Environment variable and dependencies (`.env`, `requirements.txt`).
+  - **Dependency Management Files**:
+    - `pyproject.toml`: Specifies the project dependencies, scripts, and other metadata.
+    - `poetry.lock`: Locks the exact versions of the dependencies used in the project to ensure consistency across different environments.
 
 #### Frontend (Vue.js)
-
-- **Executable Application**: The compiled production-ready files.
-- **Source Code**: The complete source code for the Vue.js application. This includes:
-  - **Main Application Code**: The primary codebase of the Vue.js application.
-  - **Modules and Packages**: Structured code directories, typically organized as follows:
-
     ```plaintext
     helpining-frontend/
     ├── src/
@@ -53,13 +44,15 @@ The release package for the `helpining-api` application includes several key com
     │   ├── views/
     │   ├── App.vue
     │   ├── main.js
-    ├── public/
     ├── .env
     ├── package.json
     ├── package-lock.json
     └── README.md
     ```
-
+- **Source Code**: The complete source code for the Vue.js application. This includes:
+  - **Main Application Code**: The primary codebase of the Vue.js application locatend in src/.
+  - **Environment and Dependencies**: Environment variable and dependencies (`.env`, `package.json`).
+    
 ### Where to Release
 
 Releases can be made to:
@@ -68,8 +61,6 @@ Releases can be made to:
 
 - **Test PyPI**: A separate instance of PyPI used for testing the distribution process. Useful for ensuring that the package can be correctly built, uploaded, and installed before releasing to the main PyPI.
 - **PyPI**: The official repository for Python packages where your final, production-ready packages will be published. This makes your package available to the broader Python community.
-
-#### Frontend (Vue.js)
 
 ### How to Release
 
