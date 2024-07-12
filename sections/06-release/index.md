@@ -28,6 +28,7 @@ The release package for the `helpining-api` application includes several key com
     ├── poetry.lock
     └── README.md
     ```
+    
 - **Source Code**: The complete source code organized in modules and packages. This includes:
   - **Main Application Code**: The primary codebase of the FastAPI application in the path app/.
   - **Environment and Dependencies**: Environment variable and dependencies (`.env`, `requirements.txt`).
@@ -36,6 +37,7 @@ The release package for the `helpining-api` application includes several key com
     - `poetry.lock`: Locks the exact versions of the dependencies used in the project to ensure consistency across different environments.
 
 #### Frontend (Vue.js)
+
     ```plaintext
     helpining-frontend/
     ├── src/
@@ -49,6 +51,7 @@ The release package for the `helpining-api` application includes several key com
     ├── package-lock.json
     └── README.md
     ```
+    
 - **Source Code**: The complete source code for the Vue.js application. This includes:
   - **Main Application Code**: The primary codebase of the Vue.js application locatend in src/.
   - **Environment and Dependencies**: Environment variable and dependencies (`.env`, `package.json`).
