@@ -20,37 +20,106 @@ CI/CD (Continuous Integration and Continuous Deployment) automates the process o
 
 2. **Workflow Triggers**:
    - The CI/CD workflow is triggered by specific events, such as pushes to the `main` branch and pull requests targeting the `main` branch.
-   - This ensures that the pipeline runs automatically whenever there are changes to the codebase.
 
-3. **Job Structure**:
-   - **Build Backend**:
+3. **Job Structure Frontend**:
+      - **Test Backend**:
+         
+         ```yaml
+         
+         name: CI/CD
+         on:
+           push:
+             paths-ignore:
+               - '.gitignore'
+               - 'LICENSE'
+               - 'README.md'
+           pull_request:
+           workflow_dispatch:
+         jobs:
+           test:
+             strategy:
+               fail-fast: false
+               matrix:
+                 os:
+                   - windows-latest
+                 python-version:
+                   - '3.10'
+                   - '3.11'
+                   - '3.12'
+             runs-on: ${{ matrix.os }}
+             name: Test on Python ${{ matrix.python-version }}, on ${{ matrix.os }}
+             timeout-minutes: 45
+             steps:
+               - name: Setup Python
+                 uses: actions/setup-python@v5
+                 with:
+                   python-version: ${{ matrix.python-version }}
+         
+               - name: Install poetry
+                 run: pip install poetry
+               
+               - name: Checkout code
+                 uses: actions/checkout@v4
+         
+               - name: Restore Python dependencies
+                 run: poetry install
+         
+               - name: Test
+                 shell: bash
+                 run: poetry run python -m unittest discover -v -s tests
+         
+         ```
      - Sets up the Python environment.
      - Installs dependencies using Poetry.
-
-        - To manage Python dependencies for the FastAPI backend, Poetry is used. Below is the configuration needed.
-            ```toml
-                [tool.poetry]
-                name = "helpining-api"
-                version = "0.1.0"
-                description = "Backend for the helpining project"
-                authors = ["alberto.signorin@studio.unibo.it"]
-                
-                [tool.poetry.dependencies]
-                python = "^3.11"
-                fastapi = "^0.111.0"
-                uvicorn = "^0.30.1"
-                
-                [tool.poetry.dev-dependencies]
-                pytest = "^8.2.2"
-            ```
      - Runs tests to ensure the backend code is functioning correctly.
+
+   - **Release**:
+           
+         ```yaml
+         
+         release:
+             needs: test
+             if: github.ref == 'refs/heads/master'
+             runs-on: ubuntu-latest
+             name: Release on PyPI and GitHub
+             permissions:
+               contents: write
+             steps:
+               - name: Checkout code
+                 uses: actions/checkout@v4
+                 with:
+                   fetch-depth: 0
+                   token: ${{ secrets.GITHUB_TOKEN }}
+         
+               - name: Install poetry
+                 run: pip install poetry
+         
+               - name: Restore Python dependencies
+                 run: poetry install
+         
+               - name: Build Python Package
+                 run: poetry build
+         
+               - name: Publish on TestPyPI
+                 run: poetry publish --repository pypi-test --username __token__ --password ${{ secrets.TEST_PYPI_TOKEN }}
+         
+               - name: Create GitHub Release
+                 shell: bash
+                 run: |
+                   RELEASE_TAG=$(poetry version --short)
+                   gh release create $RELEASE_TAG dist/* -t v$RELEASE_TAG -F CHANGELOG.md
+                 env:
+                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+         
+         ```
+     
+     - Builds the Fastapi backend application.
+     - Deploys the built application to the server TestPyPI and creates the GitHub release.
+       
+5. **Job Structure Frontend**:
    - **Build Frontend**:
      - Sets up the Node.js environment.
      - Installs dependencies.
      - Builds the Vue.js frontend application.
    - **Deployment**:
-     - Deploys the built application to the server [Deployment](../07-deployment/index.md).
-
-4. **Secrets Management**:
-   - GitHub Secrets are used to securely manage sensitive information required for deployment.
-   - These secrets are configured in the repository settings and accessed securely within the workflow.
+     - Deploys the built application to the server Hosting.
