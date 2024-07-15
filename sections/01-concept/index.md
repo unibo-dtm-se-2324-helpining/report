@@ -18,23 +18,28 @@ nav_order: 2
 ## Use Case Collection
 ![Use cases](/report/pictures/useCase.png)
 
-### Use Case 1: User Upload help request
+### Use Case 1: Create an account
+- **Scenario**: The user or expert create an account to logs into 'Helpining' and use functionalities.
+
+### Use Case 2: User Upload help request
 - **Scenario**: The user logs into 'Helpining', navigates to the request submission page, and uploads a detailed description of their problem.
 
-
-### Use Case 2: Expert accept user help request
+### Use Case 3: Expert accept user help request
 - **Scenario**: An expert in a particular field logs into 'Helpining' and browses the public notice board for user requests that match their expertise. The expert selects a request they can assist with and accepts it.
 
-### Use Case 3: User select expert for resolving help request
+### Use Case 4: User select expert for resolving help request
 - **Scenario**: The application sends an email to the expert with a link to join a Microsoft Teams meeting, facilitating direct communication.
 
-### Use Case 4: User rate the assistance
+### Use Case 5: User rate the assistance
 - **Scenario**: The user rate the expert about the resolving of the issue.
 
-### Use Case 5: User and Expert update ther personal profile Management
+### Use Case 6: User and Expert update ther personal profile Management
 - **Scenario**: They access their profile management page, make the necessary updates, and save the changes.
 
 ## User Stories
+
+### User Story 1: Creating an account
+As a potential user, I want to subscribe the service so that I can become a user and exploit services.
 
 ### User Story 1: Submitting a Request
 As a user, I want to submit a detailed description of my problem so that I can receive assistance from an expert.
