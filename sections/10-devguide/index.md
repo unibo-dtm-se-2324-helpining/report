@@ -81,14 +81,12 @@ nav_order: 11
 - **Description**: Deletes an account by email.
 - **Parameters**:
   - `email` (str): The email of the account to be deleted.
-  - `service` (AccessService): Injected `AccessService`.
 - **Response**: JSON message indicating success.
 
 #### GET /accounts/experts_by_skill/
 - **Description**: Retrieves experts by skill.
 - **Parameters**:
   - `skill` (str): The skill to filter experts by.
-  - `service` (AccessService): Injected `AccessService`.
 - **Response**: JSON message indicating success and data.
 
 ### Expert Routes
@@ -98,8 +96,6 @@ nav_order: 11
 - **Parameters**:
   - `email` (str): The email of the expert.
   - `skill` (str): The skill to be added.
-  - `service` (AccessService): Injected `AccessService`.
-  - `account` (JWTextracted): Extracted JWT data.
 - **Response**: JSON message indicating success.
 
 #### DELETE /experts/{email}/skills/
@@ -115,13 +111,11 @@ nav_order: 11
 - **Description**: Chooses an expert.
 - **Parameters**:
   - `expert_email` (str): The email of the expert to be chosen.
-  - `service` (AccessService): Injected `AccessService`.
 - **Response**: JSON message indicating success.
 
 #### GET /operations/generate_send_call_email/
 - **Description**: Generates and sends a call email.
 - **Parameters**:
   - `expert_email` (str): The email of the expert.
-  - `service` (AccessService): Injected `AccessService`.
 - **Response**: JSON message indicating success.
 
