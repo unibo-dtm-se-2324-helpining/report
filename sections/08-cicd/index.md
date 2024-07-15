@@ -110,7 +110,7 @@ CI/CD (Continuous Integration and Continuous Deployment) automates the process o
                    gh release create $RELEASE_TAG dist/* -t v$RELEASE_TAG -F CHANGELOG.md
                  env:
                    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-         
+     
          ```
      
      - Builds the Fastapi backend application.
