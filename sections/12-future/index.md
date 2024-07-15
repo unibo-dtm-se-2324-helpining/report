@@ -24,3 +24,6 @@ This section describes what is missing, what does not work as it should, and pot
 
 3. **Real-time Notifications**:
    - Notifications for users and experts now are only emails and will be app notifications, which can affect user experience.
+  
+3. **Integration of Payment methods**:
+   - Integration of Payment methods like Paypal to automate the payment from users to experts.
