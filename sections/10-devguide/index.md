@@ -9,6 +9,14 @@ nav_order: 11
 
 ### Authentication Route
 
+#### POST /subscribe
+- **Description**: Create an account and save credentials.
+- **Parameters**:
+  - `username` (str): The username of the user.
+  - `role` (str): The role of the user.
+  - `password` (str): The password of the user.
+- **Response**: JSON message containing success or not.
+
 #### POST /login
 - **Description**: Authenticates a user and returns a JWT token.
 - **Parameters**:
