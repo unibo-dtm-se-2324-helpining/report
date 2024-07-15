@@ -75,43 +75,43 @@ CI/CD (Continuous Integration and Continuous Deployment) automates the process o
 
    - **Release**:
            
-         ```yaml
-         
-         release:
-             needs: test
-             if: github.ref == 'refs/heads/master'
-             runs-on: ubuntu-latest
-             name: Release on PyPI and GitHub
-             permissions:
-               contents: write
-             steps:
-               - name: Checkout code
-                 uses: actions/checkout@v4
-                 with:
-                   fetch-depth: 0
-                   token: ${{ secrets.GITHUB_TOKEN }}
-         
-               - name: Install poetry
-                 run: pip install poetry
-         
-               - name: Restore Python dependencies
-                 run: poetry install
-         
-               - name: Build Python Package
-                 run: poetry build
-         
-               - name: Publish on TestPyPI
-                 run: poetry publish --repository pypi-test --username __token__ --password ${{ secrets.TEST_PYPI_TOKEN }}
-         
-               - name: Create GitHub Release
-                 shell: bash
-                 run: |
-                   RELEASE_TAG=$(poetry version --short)
-                   gh release create $RELEASE_TAG dist/* -t v$RELEASE_TAG -F CHANGELOG.md
-                 env:
-                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-     
-         ```
+      ```yaml
+      
+      release:
+          needs: test
+          if: github.ref == 'refs/heads/master'
+          runs-on: ubuntu-latest
+          name: Release on PyPI and GitHub
+          permissions:
+            contents: write
+          steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+              with:
+                fetch-depth: 0
+                token: ${{ secrets.GITHUB_TOKEN }}
+      
+            - name: Install poetry
+              run: pip install poetry
+      
+            - name: Restore Python dependencies
+              run: poetry install
+      
+            - name: Build Python Package
+              run: poetry build
+      
+            - name: Publish on TestPyPI
+              run: poetry publish --repository pypi-test --username __token__ --password ${{ secrets.TEST_PYPI_TOKEN }}
+      
+            - name: Create GitHub Release
+              shell: bash
+              run: |
+                RELEASE_TAG=$(poetry version --short)
+                gh release create $RELEASE_TAG dist/* -t v$RELEASE_TAG -F CHANGELOG.md
+              env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  
+      ```
      
      - Builds the Fastapi backend application.
      - Deploys the built application to the server TestPyPI and creates the GitHub release.
