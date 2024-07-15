@@ -17,6 +17,11 @@ Welcome to the 'Helpining' web application! This guide will walk you through the
 
 ## User Workflow
 
+### Subscribe and login
+
+1. **Subscribe**: Register by following the on-screen instructions.
+2. **Log In**: Use your credentials to log into your account. If you do not have an account, register by following the on-screen instructions.
+
 ### Submitting a Help Request
 
 1. **Log In**: Use your credentials to log into your account. If you do not have an account, register by following the on-screen instructions.
