@@ -19,26 +19,20 @@ nav_order: 2
 ![Use cases](/report/pictures/useCase.png)
 
 ### Use Case 1: User Upload help request
-- **Scenario**: A user encounters a complex problem in their field of study or work.
-- **Action**: The user logs into 'Helpining', navigates to the request submission page, and uploads a detailed description of their problem.
+- **Scenario**: The user logs into 'Helpining', navigates to the request submission page, and uploads a detailed description of their problem.
 
 
 ### Use Case 2: Expert accept user help request
-- **Scenario**: An expert in a particular field logs into 'Helpining' and browses the public notice board for user requests that match their expertise.
-- **Action**: The expert selects a request they can assist with and accepts it.
+- **Scenario**: An expert in a particular field logs into 'Helpining' and browses the public notice board for user requests that match their expertise. The expert selects a request they can assist with and accepts it.
 
 ### Use Case 3: User select expert for resolving help request
-- **Scenario**: The expert selects a request they can assist with and accepts it.
-- **Action**: The application sends an email to the expert with a link to join a Microsoft Teams meeting, facilitating direct communication.
+- **Scenario**: The application sends an email to the expert with a link to join a Microsoft Teams meeting, facilitating direct communication.
 
 ### Use Case 4: User rate the assistance
-- **Scenario**: A user that has completed the meeting for the resolution of the problem.
-- **Action**: The user rate the expert about the resolving of the issue.
+- **Scenario**: The user rate the expert about the resolving of the issue.
 
 ### Use Case 5: User and Expert update ther personal profile Management
-- **Scenario**: Users and experts need to update their personal information or expertise areas.
-- **Action**: They access their profile management page, make the necessary updates, and save the changes.
-
+- **Scenario**: They access their profile management page, make the necessary updates, and save the changes.
 
 ## User Stories
 
