@@ -17,12 +17,12 @@ nav_order: 12
   - Set up and managed the MySQL database.
   - Implemented user authentication and authorization with JWT.
   - Designed and implemented the user interface.
-  - Managed deployment using Docker and Docker Compose.
+  - Managed deployment using Poetry and PyPi.
 
 ### Strengths
 - **Comprehensive Development**: Successfully managed and completed the development of both front-end and back-end components.
 - **Integration**: Efficiently integrated various technologies (FastAPI, VueJs, MySQL, Microsoft Teams) to create a seamless user experience.
-- **Deployment**: Set up a robust deployment process using Docker and Docker Compose, ensuring the application is easy to deploy and scalable.
+- **Deployment**: Set up a robust deployment process using Poetry and PyPi, ensuring the application is easy to deploy and scalable.
 - **User Interface**: Designed a user-friendly and responsive UI, enhancing the overall user experience.
 
 ### Weaknesses
