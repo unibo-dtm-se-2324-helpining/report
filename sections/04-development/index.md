@@ -49,6 +49,19 @@ from ..services.JWTService import extract_jwt, JWTextracted  # Assuming you have
 # Initialize FastAPI application
 controller = APIRouter()
 
+# Subscribe
+@controller.post("/subscribe/")
+async def login(
+    username: str,
+    role: str,
+    password: str
+):
+    """
+    Endpoint to create a new account
+    """
+
+    return AccessService.subscribe(username, role, password)
+
 # Login
 @controller.post("/login/")
 async def login(
