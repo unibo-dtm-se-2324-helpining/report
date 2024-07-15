@@ -21,7 +21,7 @@ nav_order: 4
 ## Modelling
 
 ### Domain Modelling
-The domain model for 'Helpining' is designed using Domain-Driven Design (DDD) principles, ensuring that the core business logic is well encapsulated and decoupled from technical details.
+The domain model for 'Helpining' is designed using Unified Modelling Language (UML) principles, ensuring that the core business logic is well encapsulated and decoupled from technical details.
 
 #### Class Diagrams:
 
