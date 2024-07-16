@@ -13,7 +13,9 @@ nav_order: 7
 The release package for the `helpining-api` application includes several key components for both the FastAPI backend and the Vue.js frontend:
 
 #### Backend (FastAPI)
+
     ```plaintext
+
     helpining-api/
     ├── app/
     │   ├── __init__.py
@@ -27,6 +29,7 @@ The release package for the `helpining-api` application includes several key com
     ├── pyproject.toml
     ├── poetry.lock
     └── README.md
+    
     ```
     
 - **Source Code**: The complete source code organized in modules and packages. This includes:
@@ -39,6 +42,7 @@ The release package for the `helpining-api` application includes several key com
 #### Frontend (Vue.js)
 
     ```plaintext
+    
     helpining-frontend/
     ├── src/
     │   ├── assets/
@@ -50,6 +54,7 @@ The release package for the `helpining-api` application includes several key com
     ├── package.json
     ├── package-lock.json
     └── README.md
+    
     ```
     
 - **Source Code**: The complete source code for the Vue.js application. This includes:
@@ -62,8 +67,11 @@ Releases can be made to:
 
 #### Backend (FastAPI)
 
-- **Test PyPI**: A separate instance of PyPI used for testing the distribution process. Useful for ensuring that the package can be correctly built, uploaded, and installed before releasing to the main PyPI.
-- **PyPI**: The official repository for Python packages where your final, production-ready packages will be published. This makes your package available to the broader Python community.
+- **PyPI**: The official repository for Python packages where your final, production-ready packages will be published. This makes your package available to the broader Python community .
+
+#### Frontend (VueJS)
+
+- **Deployng to hosting service**: Choose an hosting service like AWS for the accessibility to users. 
 
 ## Licence
 - **Chosen License**: Apache License 2.0
