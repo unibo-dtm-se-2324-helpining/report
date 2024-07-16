@@ -14,7 +14,7 @@ The release package for the `helpining-api` application includes several key com
 
 #### Backend (FastAPI)
 
-    ```plaintext
+    ```
 
     helpining-api/
     ├── app/
@@ -41,7 +41,7 @@ The release package for the `helpining-api` application includes several key com
 
 #### Frontend (Vue.js)
 
-    ```plaintext
+    ```
     
     helpining-frontend/
     ├── src/
