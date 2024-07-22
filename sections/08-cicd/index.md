@@ -21,7 +21,7 @@ CI/CD (Continuous Integration and Continuous Deployment) automates the process o
 2. **Workflow Triggers**:
    - The CI/CD workflow is triggered by specific events, such as pushes to the `main` branch and pull requests targeting the `main` branch.
 
-3. **Job Structure Frontend**:
+3. **Job Structure Backend**:
       - **Test Backend**:
          
          ```yaml
