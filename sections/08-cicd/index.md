@@ -73,15 +73,15 @@ CI/CD (Continuous Integration and Continuous Deployment) automates the process o
         - Installs dependencies using Poetry.
         - Runs tests to ensure the backend code is functioning correctly.
 
-   - **Release**:
+   - **Deployment**:
            
       ```yaml
       
-      release:
+      deployment:
           needs: test
           if: github.ref == 'refs/heads/master'
           runs-on: ubuntu-latest
-          name: Release on PyPI and GitHub
+          name: deployment on PyPI-test and release on GitHub
           permissions:
             contents: write
           steps:
