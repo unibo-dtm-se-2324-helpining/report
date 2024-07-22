@@ -41,23 +41,23 @@ nav_order: 2
 ### User Story 1: Creating an account
 As a potential user, I want to subscribe the service so that I can become a user and exploit services.
 
-### User Story 1: Submitting a Request
+### User Story 2: Submitting a Request
 As a user, I want to submit a detailed description of my problem so that I can receive assistance from an expert.
-
-### User Story 2: Browsing Expert Profiles
-As a user, I want to browse the profiles of available experts so that I can choose the best match for my problem.
 
 ### User Story 3: Accepting a Request
 As an expert, I want to browse user requests and accept those that match my expertise so that I can offer my assistance.
 
-### User Story 4: Managing My Profile
+### User Story 4: Browsing Expert Profiles
+As a user, I want to browse the profiles of available experts for my request so that I can choose the best match for my problem.
+
+### User Story 5: Managing My Profile
 As a user or expert, I want to update my personal information and expertise areas so that my profile remains accurate and relevant.
 
-### User Story 5: Receiving Notifications
+### User Story 6: Receiving Notifications
 As a user, I want to receive notifications when an expert accepts my request so that I am informed about the progress.
 
-### User Story 6: Participating in a Video Call
+### User Story 7: Participating in a Video Call
 As a user, I want to join a video call with an expert through Microsoft Teams so that I can discuss my problem and receive immediate assistance.
 
-### User Story 7: Rating the Assistance
+### User Story 8: Rating the Assistance
 As a user, I want to rate the expert's assistance after the video call so that I can provide feedback on my experience.
