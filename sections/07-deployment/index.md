@@ -24,7 +24,9 @@ There are the steps of building and publishing my FastAPI project using Poetry, 
      ```sh
     poetry config pypi-token.testpypi <pypi-token>
      ```
-    Then publish to Test-PyPI:
+     
+    Then publish to Test-PyPI, a separate instance of PyPI used for testing the distribution process. Useful for ensuring that the package can be correctly built, uploaded, and installed before releasing to the main PyPI.
+:
     
      ```sh
     poetry publish --repository testpypi
